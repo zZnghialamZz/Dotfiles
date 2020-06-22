@@ -1,0 +1,15 @@
+# Dont commit files
+.DS_Store
+
+# Dont commit these auto generate folder
+coc/
+configstore/
+GameMakerStudio2/
+gatsby/
+gops/
+gtk-2.0/
+neofetch/
+NuGet/
+rtags/
+stetic/
+xbuild/

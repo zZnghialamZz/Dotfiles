@@ -1,0 +1,58 @@
+#!/usr/bin/env sh
+
+yabai -m config external_bar                 all:26:0
+
+yabai -m config mouse_follows_focus          on
+yabai -m config window_topmost               off
+yabai -m config focus_follows_mouse          off
+yabai -m config window_opacity               on
+yabai -m config window_opacity_duration      0.1
+yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        1.0
+yabai -m config window_shadow                float
+yabai -m config split_ratio                  0.5
+yabai -m config auto_balance                 off
+yabai -m config mouse_modifier               fn
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+yabai -m config window_border                on
+yabai -m config window_border_width          3
+yabai -m config active_window_border_color   0xffaf7ac4
+yabai -m config normal_window_border_color   0xff998d9e
+yabai -m config insert_feedback_color        0xffd75f5f
+
+yabai -m config layout                       bsp
+yabai -m config top_padding                  10
+yabai -m config bottom_padding               10
+yabai -m config left_padding                 10
+yabai -m config right_padding                10
+yabai -m config window_gap                   10
+
+# Start with no gap or padding for all spaces
+for space in $(yabai -m query --spaces | jq ".[] | .index")
+do
+  yabai -m space $space --toggle padding
+  yabai -m space $space --toggle gap
+done
+
+#    
+# Comms
+yabai -m space 1 --label ""
+yabai -m rule --add app=Station space=^""
+
+# Design
+yabai -m space 2 --label ""
+yabai -m rule --add app=Aseprite space=^""
+
+# Code
+yabai -m space 3 --label  ""
+yabai -m rule --add app=Alacritty space=^""
+yabai -m rule --add app=iTerm space=^""
+yabai -m rule --add app=Terminal space=^""
+yabai -m rule --add app=Emacs space=^""
+
+# Other rules
+yabai -m rule --add app="System Preferences" manage=off layer=above
+yabai -m rule --add app=Books manage=on
+
+echo "yabai configuration loaded.." 
