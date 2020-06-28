@@ -51,6 +51,12 @@ yabai -m rule --add app=iTerm space=^""
 yabai -m rule --add app=Terminal space=^""
 yabai -m rule --add app=Emacs space=^""
 
+# Preview
+yabai -m space 4 --label  ""
+
+# Preview
+yabai -m space 5 --label  ""
+
 # Other rules
 yabai -m rule --add app="System Preferences" manage=off layer=above
 yabai -m rule --add app=Books manage=on
