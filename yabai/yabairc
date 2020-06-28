@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
-yabai -m config external_bar                 all:26:0
+yabai -m config external_bar                 all:20:0
 
-yabai -m config mouse_follows_focus          on
-yabai -m config window_topmost               off
+yabai -m config mouse_follows_focus          off
+yabai -m config window_topmost               on
 yabai -m config focus_follows_mouse          off
 yabai -m config window_opacity               on
 yabai -m config window_opacity_duration      0.1
@@ -54,5 +54,9 @@ yabai -m rule --add app=Emacs space=^""
 # Other rules
 yabai -m rule --add app="System Preferences" manage=off layer=above
 yabai -m rule --add app=Books manage=on
+
+# Config to work with ubersicht menu bar
+yabai -m signal --add event=space_changed \
+    action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"macbar-spaces-primary-jsx\"'"
 
 echo "yabai configuration loaded.." 
