@@ -15,7 +15,7 @@ const className = `
     left: 0;
     padding: 4px;
     color: white;
-    font-size: 11px;
+    font-size: 10px;
     font-family: ${Theme.font};
     z-index: 1;
   }

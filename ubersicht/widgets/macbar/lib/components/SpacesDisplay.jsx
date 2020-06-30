@@ -2,15 +2,16 @@ import { appIcons } from '../data.js'
 
 export const refreshFrequency = false
 
-const appExclusions = ['Finder', 'iTerm2']
+const appExclusions = ['Finder', 'Übersicht'];
 
 const OpenedApps = ({ apps }) => {
-  if (apps.length === 0) return null
+  if (apps.length === 0) return null;
   return apps.map((el) => {
-    const Icon = appIcons[el.app] || appIcons['Default']
-    return <Icon />
-  })
-}
+    // if (appIcons[el.app] === undefined) return <span> - {el.app}</span>;
+    const Icon = appIcons[el.app] || appIcons['Default'];
+    return <Icon />;
+  });
+};
 
 const SpacesDisplay = ({ output, displayId }) => {
   const { displays, spaces, windows } = output

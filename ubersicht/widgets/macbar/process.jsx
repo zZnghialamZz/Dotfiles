@@ -13,14 +13,14 @@ const className = `
     top: 0;
     left: 0;
     width: 100%;
-    height: 28px;
+    height: 26px;
     display: flex;
     align-items: center;
     padding: 4px 5px;
     box-sizing: border-box;
     color: white;
     font-family: ${Theme.font};
-    font-size: 12px;
+    font-size: 11px;
     background-color: ${Theme.main};
     z-index: 0;
   }

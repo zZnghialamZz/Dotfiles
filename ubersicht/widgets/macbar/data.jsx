@@ -23,7 +23,7 @@ const className = `
     padding: 4px 5px;
     color: ${Theme.main};
     font-family: ${Theme.font};
-    font-size: 12px;
+    font-size: 10px;
     z-index: 1;
   }
   .simple-bar__data > *:not(:last-of-type) {

@@ -1,7 +1,7 @@
 export const Theme = {
-  main: '#1B222D',
-  minor: '#39465E',
-  accent: '#FFD484',
+  main: '#282a36',
+  minor: '#6272a4',
+  accent: '#f8f8f2',
   red: '#E78482',
   green: '#8FC8BB',
   yellow: '#FFD484',

@@ -10,11 +10,11 @@ export const SpacesDisplayStyles = `
   position: relative;
   display: flex;
   align-items: center;
-  margin-right: 8px;
-  padding: 3px 7px;
+  margin-right: 6px;
+  padding: 3px 6px;
   background-color: ${Theme.minor};
   border-radius: 2px;
-  transition: background-color 160ms ${Theme.easing}, color 320ms ${Theme.easing};
+  transition: background-color 160ms ${Theme.easing}, color 160ms ${Theme.easing};
   z-index: 0;
 }
 .space::after {
@@ -24,7 +24,7 @@ export const SpacesDisplayStyles = `
   left: 0;
   width: 100%;
   height: 100%;
-  max-width: 2px;
+  max-width: 0px;
   background-color: white;
   border-radius: 2px;
   z-index: -1;
