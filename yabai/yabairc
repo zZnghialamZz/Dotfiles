@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-yabai -m config external_bar                 all:20:0
+yabai -m config external_bar                 all:26:0
 
 yabai -m config mouse_follows_focus          off
 yabai -m config window_topmost               on
@@ -62,7 +62,8 @@ yabai -m rule --add app="System Preferences" manage=off layer=above
 yabai -m rule --add app=Books manage=on
 
 # Config to work with ubersicht menu bar
-yabai -m signal --add event=space_changed \
-    action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"macbar-spaces-primary-jsx\"'"
+yabai -m signal --add event=space_changed action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"macbar-spaces-jsx\"'"
+yabai -m signal --add event=display_changed action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"macbar-spaces-jsx\"'"
+yabai -m signal --add event=space_changed action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"macbar-process-jsx\"'"
 
 echo "yabai configuration loaded.." 
