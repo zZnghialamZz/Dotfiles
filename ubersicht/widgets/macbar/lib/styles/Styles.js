@@ -14,7 +14,7 @@ export const SpacesDisplayStyles = `
   padding: 3px 6px;
   background-color: ${Theme.minor};
   border-radius: 2px;
-  transition: background-color 160ms ${Theme.easing}, color 160ms ${Theme.easing};
+  transition: background-color 100ms ${Theme.easing}, color 100ms ${Theme.easing};
   z-index: 0;
 }
 .space::after {
@@ -28,7 +28,7 @@ export const SpacesDisplayStyles = `
   background-color: white;
   border-radius: 2px;
   z-index: -1;
-  transition: max-width 320ms ${Theme.easing};
+  transition: max-width 100ms ${Theme.easing};
 }
 .space--focused {
   color: ${Theme.minor};

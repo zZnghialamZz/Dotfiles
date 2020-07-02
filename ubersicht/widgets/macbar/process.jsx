@@ -33,13 +33,12 @@ const className = `
 const command = 'bash macbar/lib/scripts/get_process.sh'
 
 const render = ({ output, error }) => {
-  if (!output || error) return <div className="simple-bar simple-bar--empty">Something went wrong...</div>
-  const data = parseJson(output)
-  if (!data) return <div className="simple-bar simple-bar--empty">JSON error...</div>
-  const { process } = data
+  // if (!output || error) return <div className="simple-bar simple-bar--empty">Something went wrong...</div>
+  // const data = parseJson(output)
+  // if (!data) return <div className="simple-bar simple-bar--empty">JSON error...</div>
+  // const { process } = data
   return (
     <div className="simple-bar">
-      <Process output={process} />
     </div>
   )
 }

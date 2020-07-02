@@ -15,6 +15,7 @@ import {
   SequelPro,
   Skype,
   Slack,
+  Telegram,
   Zeplin,
   Bias,
   Piano,
@@ -25,6 +26,7 @@ import {
   Discord,
   Preview,
   Unity,
+  VisualStudio,
   Video
 } from './components/Icons.jsx';
 
@@ -36,6 +38,7 @@ export const appIcons = {
   Figma: Figma,
   'Dashlane': Dashlane,
   Discord: Discord,
+  Telegram: Telegram,
   Firefox: Firefox,
   Spotify: Spotify,
   Preview: Preview,
@@ -56,5 +59,6 @@ export const appIcons = {
   'Sequel Pro': SequelPro,
   Skype: Skype,
   Slack: Slack,
+  'Visual Studio': VisualStudio,
   Zeplin: Zeplin
 };

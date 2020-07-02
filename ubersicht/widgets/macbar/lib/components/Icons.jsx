@@ -22,6 +22,12 @@ export const Unity = (props) => (
   </Icon>
 )
 
+export const Code = (props) => (
+  <Icon {...props}>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#00000" xmlns="http://www.w3.org/2000/svg"><title>Visual Studio Code icon</title><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
+  </Icon>
+)
+
 export const Video = (props) => (
   <Icon {...props}>
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11 17H4C2.34315 17 1 15.6569 1 14V6C1 4.34315 2.34315 3 4 3H20C21.6569 3 23 4.34315 23 6V14C23 15.6569 21.6569 17 20 17H13V19H16C16.5523 19 17 19.4477 17 20C17 20.5523 16.5523 21 16 21H8C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19H11V17ZM4 5H20C20.5523 5 21 5.44772 21 6V14C21 14.5523 20.5523 15 20 15H4C3.44772 15 3 14.5523 3 14V6C3 5.44772 3.44772 5 4 5Z" fill="currentColor" /></svg>
@@ -61,6 +67,12 @@ export const Safari = (props) => (
 export const Dashlane = (props) => (
   <Icon { ...props }>
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 8V13C7 15.7614 9.23858 18 12 18C14.7614 18 17 15.7614 17 13V8H7ZM5 4H19V13C19 16.866 15.866 20 12 20C8.13401 20 5 16.866 5 13V4Z" fill="currentColor" /></svg>
+  </Icon>
+)
+
+export const Telegram = (props) => (
+  <Icon { ...props }>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#00000" xmlns="http://www.w3.org/2000/svg"><title>Telegram icon</title><path d="M23.91 3.79L20.3 20.84c-.25 1.21-.98 1.5-2 .94l-5.5-4.07-2.66 2.57c-.3.3-.55.56-1.1.56-.72 0-.6-.27-.84-.95L6.3 13.7l-5.45-1.7c-1.18-.35-1.19-1.16.26-1.75l21.26-8.2c.97-.43 1.9.24 1.53 1.73z"/></svg>
   </Icon>
 )
 
@@ -225,7 +237,7 @@ export const Zeplin = (props) => (
   </Icon>
 )
 
-export const Code = (props) => (
+export const VisualStudio = (props) => (
   <Icon {...props}>
     <path d="M8.54 14.69L2.6 19.3 0 18.02V5.99l2.58-1.3L8.5 9.33 17.85 0 24 2.44v19.08L17.88 24l-9.34-9.31zm9.12 1.62V7.7L12.06 12l5.6 4.3zM2.8 14.76l2.94-2.66L2.8 9.18v5.58z" />
   </Icon>
