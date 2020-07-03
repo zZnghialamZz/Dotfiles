@@ -35,27 +35,34 @@ do
   yabai -m space $space --toggle gap
 done
 
-#    
+# All Spaces ----------------------------------------
 # Comms
-yabai -m space 1 --label ""
-yabai -m rule --add app=Station space=^""
+yabai -m space 1 --label "Comms"
+yabai -m rule --add app=Station space=^"Comms"
+yabai -m rule --add app=Telegram space=^"Comms"
+yabai -m rule --add app="zoom.us" space=^"Comms"
 
 # Design
-yabai -m space 2 --label ""
-yabai -m rule --add app=Aseprite space=^""
+yabai -m space 2 --label "Art"
+yabai -m rule --add app=Aseprite space=^"Art"
+yabai -m rule --add app=Blender space=^"Art"
 
 # Code
-yabai -m space 3 --label  ""
-yabai -m rule --add app=Alacritty space=^""
-yabai -m rule --add app=iTerm space=^""
-yabai -m rule --add app=Terminal space=^""
-yabai -m rule --add app=Emacs space=^""
+yabai -m space 3 --label  "Code"
+yabai -m rule --add app=Alacritty space=^"Code"
+yabai -m rule --add app=iTerm space=^"Code"
+yabai -m rule --add app=Terminal space=^"Code"
+yabai -m rule --add app=Emacs space=^"Code"
+yabai -m rule --add app=Code space=^"Code"
+yabai -m rule --add app="Visual Studio" space=^"Code"
 
-# Preview
-yabai -m space 4 --label  ""
+# Engine
+yabai -m space 4 --label  "Engine"
+yabai -m rule --add app=Unity space=^"Engine"
+yabai -m rule --add app="Unity Hub" space=^"Engine"
 
-# Preview
-yabai -m space 5 --label  ""
+# Misc
+yabai -m space 5 --label  "Misc"
 
 # Other rules
 yabai -m rule --add app="System Preferences" manage=off layer=above
