@@ -59,7 +59,7 @@ yabai -m rule --add app="Visual Studio" space=^"Code"
 # Engine
 yabai -m space 4 --label  "Engine"
 yabai -m rule --add app=Unity space=^"Engine"
-yabai -m rule --add app="Unity Hub" space=^"Engine"
+yabai -m rule --add app="Unity Hub" space=^"Engine" manage=off
 
 # Misc
 yabai -m space 5 --label  "Misc"
