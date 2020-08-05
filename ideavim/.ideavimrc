@@ -1,0 +1,45 @@
+set hlsearch
+set ignorecase
+set autoindent
+set smartcase
+set startnormalmode
+set imdisable
+set incsearch
+
+" Emulated Plugins
+set surround
+" Copy to system clipboard as well
+set clipboard+=unnamed
+" Use Idea to join lines smartly
+set ideajoin
+" Multiple cursors support
+set multiple-cursors
+
+inoremap jk <ESC>
+" Closing tabs
+nmap <leader>q :action CloseContent<cr>
+nmap <leader>Q :action ReopenClosedTab<cr>
+" To navigate between split panes
+nmap <leader>wo :action NextSplitter<cr>
+nmap <leader>wp :action PrevSplitter<cr>
+nmap <leader>j :action PrevSplitter<cr>
+" Splits manipulation
+nmap <leader>ws :action SplitHorizontally<cr>
+nmap <leader>wv :action SplitVertically<cr>
+nmap <leader>wc :action Unsplit<cr>
+nmap <leader>wC :action UnsplitAll<cr>
+nmap <leader>wd :action OpenEditorInOppositeTabGroup<cr>
+nmap <leader><leader> :action VimFilePrevious<cr>
+" Refactorings
+vmap T :action Refactorings.QuickListPopupAction<cr>
+nmap <leader>rr :action RenameElement<cr>
+nmap <leader>rg :action Generate<cr>
+nmap <leader>rI :action OptimizeImports<cr>
+" Inspection
+nmap <leader>rc :action InspectCode<cr>
+" Moving lines
+nmap [e :action MoveLineUp<cr>
+nmap ]e :action MoveLineDown<cr>
+" Moving statements
+nmap [s :action MoveStatementUp<cr>
+nmap ]s :action MoveStatementDown<cr>
