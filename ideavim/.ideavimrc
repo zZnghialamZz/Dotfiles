@@ -8,14 +8,15 @@ set scrolloff=3 " 3 lines above/below cursor when scrolling
 
 let mapleader = " "
 
-" Emulated Plugins
+""" Plugins  --------------------------------
 set surround
-" Copy to system clipboard as well
-set clipboard+=unnamed
-" Use Idea to join lines smartly
-set ideajoin
-" Multiple cursors support
 set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set textobj-entire
+set ReplaceWithRegister
+set clipboard+=unnamed
 
 inoremap jk <ESC>
 nnoremap <Leader>bs :w<CR>
@@ -65,3 +66,6 @@ nmap <leader>e :action RecentFiles<cr>
 nmap <leader>t :action GotoTest<cr>
 nmap <leader>p :action JumpToLastWindow<cr>
 nmap <leader>b :action ShowBookmarks<cr>
+
+map <leader>xf <Plug>(easymotion-s)
+map <leader>xe <Plug>(easymotion-f)
