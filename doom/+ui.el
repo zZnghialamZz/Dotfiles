@@ -1,17 +1,20 @@
 ;;; $DOOMDIR/+ui.el -*- lexical-binding: t; -*-
 
-(load-theme 'doom-gruvbox t)
+(load-theme 'modus-vivendi t)
 
 (when (display-graphic-p)
   (setq user-font
         (cond
+         ;; ((find-font (font-spec :name  "PxPlus IBM VGA8")) "PxPlus IBM VGA8")
+         ((find-font (font-spec :name  "Free Pixel")) "Free Pixel")
          ((find-font (font-spec :name  "JetBrains Mono")) "JetBrains Mono")
          ((find-font (font-spec :name  "OperatorMono Nerd Font")) "OperatorMono Nerd Font")
          ((find-font (font-spec :name  "Droid Sans Mono")) "Droid Sans Mono")
          ((find-font (font-spec :name  "Droid Sans Fallback")) "Droid Sans Fallback")))
   (cond (IS-MAC
-         (setq doom-font (font-spec :family user-font :size 12)
-               doom-big-font (font-spec :family user-font :size 18)
+         (setq doom-font (font-spec :family user-font :size 16)
+               doom-big-font (font-spec :family user-font :size 16)
+               doom-variable-pitch-font (font-spec :family user-font :size 15)
                doom-modeline-height 20))
         (IS-LINUX
          (setq resolution-factor (eval (/ (x-display-pixel-height) 1080.0)))
@@ -24,6 +27,9 @@
         '((width . 110)
           (height . 65))))
 
+(setq doom-themes-treemacs-enable-variable-pitch nil)
+(setq treemacs-space-between-root-nodes nil)
+
 ;; (after! doom-modeline
 ;;   (setq doom-modeline-buffer-file-name-style 'relative-from-project
 ;;         doom-modeline-major-mode-icon t))
@@ -31,7 +37,7 @@
 (setq +workspaces-on-switch-project-behavior t)
 
 ;; Modeline
-(set-fontset-font "fontset-default"  '(#x2600 . #x26ff) "JetBrains Mono")
+(set-fontset-font "fontset-default"  '(#x2600 . #x26ff) "PxPlus IBM VGA8")
 
 (define-key mode-line-major-mode-keymap [header-line]
   (lookup-key mode-line-major-mode-keymap [mode-line]))
@@ -79,6 +85,7 @@
   (set-face 'mode-line-inactive 'mode-line))
 
 (add-hook! 'after-init-hook #'set-modeline-faces)
+(add-hook! 'doom-load-theme-hook #'set-modeline-faces)
 
 ;; Comment if you want to keep the modeline at the bottom
 (setq-default header-line-format mode-line-format)

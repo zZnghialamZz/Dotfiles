@@ -69,6 +69,10 @@
 ;; UI
 (package! kaolin-themes)
 (package! dimmer)
+(package! cyberpunk-theme)
+(package! base16-theme)
+(package! tron-legacy-theme)
+(package! color-theme-modern)
 
 ;; Programming
 (package! google-c-style)
