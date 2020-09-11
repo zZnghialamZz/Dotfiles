@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/+ui.el -*- lexical-binding: t; -*-
 
-(load-theme 'modus-vivendi t)
+(load-theme 'creamsody t)
 
 (when (display-graphic-p)
   (setq user-font

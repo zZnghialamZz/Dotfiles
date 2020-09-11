@@ -70,9 +70,11 @@
 (package! kaolin-themes)
 (package! dimmer)
 (package! cyberpunk-theme)
-(package! base16-theme)
 (package! tron-legacy-theme)
-(package! color-theme-modern)
+(package! creamsody-theme)
+(package! darkburn-theme)
+(package! zenburn-theme)
+(package! naysayer-theme)
 
 ;; Programming
 (package! google-c-style)
