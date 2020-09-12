@@ -13,6 +13,7 @@
   "Update `load-path'."
   (push (expand-file-name "autoload" doom-emacs-dir) load-path))
 
+(load! "+binding")
 (load! "+misc")
 (load! "+programming")
 (load! "+ui")

@@ -75,6 +75,8 @@
 (package! darkburn-theme)
 (package! zenburn-theme)
 (package! naysayer-theme)
+(package! purp-theme)
+(package! color-theme-sanityinc-tomorrow)
 
 ;; Programming
 (package! google-c-style)

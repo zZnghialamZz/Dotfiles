@@ -2,11 +2,15 @@
 
 (load-theme 'creamsody t)
 
+(setq evil-normal-state-cursor '(box "light blue")
+      evil-insert-state-cursor '(box "light pink")
+      evil-visual-state-cursor '(hollow "orange"))
+
 (when (display-graphic-p)
   (setq user-font
         (cond
-         ;; ((find-font (font-spec :name  "PxPlus IBM VGA8")) "PxPlus IBM VGA8")
-         ((find-font (font-spec :name  "Free Pixel")) "Free Pixel")
+         ((find-font (font-spec :name  "PxPlus IBM VGA8")) "PxPlus IBM VGA8")
+         ;; ((find-font (font-spec :name  "Free Pixel")) "Free Pixel")
          ((find-font (font-spec :name  "JetBrains Mono")) "JetBrains Mono")
          ((find-font (font-spec :name  "OperatorMono Nerd Font")) "OperatorMono Nerd Font")
          ((find-font (font-spec :name  "Droid Sans Mono")) "Droid Sans Mono")
@@ -35,6 +39,51 @@
 ;;         doom-modeline-major-mode-icon t))
 
 (setq +workspaces-on-switch-project-behavior t)
+
+;; Echoline
+(require 'subr-x)
+
+(defun enhanced-message (orig-fun &rest args)
+  "This enhanced message displays a regular message in the echo area
+   and adds a specific text on the right part of the echo area. This
+   is to be used as an advice."
+  (let* ((right (propertize
+                 ;; Hack: The first space is a thin space, not a regular space
+                 (format-time-string "   %H:%M  ")
+                 'face '(:height 0.85
+                         :overline t
+                         :family user-font
+                         :inherit face-bold-p)))
+         ;; -10 is a crude approximation for compensating the size of displayed
+         ;; text because "Roboto Condensed" is not monospaced. We should rather
+         ;; compute the actual width in pixel of the displayed text and compute
+         ;; the proper amount of spaces needed in the left part. This is beyond
+         ;; my current elisp/emacs knowledge.
+         (width (- (frame-width) (length right) -0))
+         (msg (if (car args) (apply 'format-message args) ""))
+         ;; Hack: The space for the split is a thin space, not a regular space
+         ;; This way, we get rid of the added part if present (unless an actual
+         ;; message uses a thin space.
+         (msg (car (split-string msg " ")))
+         (msg (string-trim msg))
+         (left (truncate-string-to-width msg width nil nil "…"))
+         (full (format (format "%%-%ds %%s" width) left right)))
+    (if (active-minibuffer-window)
+        ;; Regular log and display when minibuffer is active
+        (apply orig-fun args)
+      (progn
+        ;; Log actual message without echo
+        (if message-log-max
+            (let ((inhibit-message t)) (apply orig-fun (list msg))))
+        ;; Display enhanced message without log
+        (let ((message-truncate-lines t) (message-log-max nil))
+          (apply orig-fun (list full)))
+        ;; Set current message explicitely
+        (setq current-message msg)))))
+
+(advice-add 'message :around #'enhanced-message)
+(add-hook 'post-command-hook (lambda () (let ((message-log-max nil))
+                                          (message (current-message)))))
 
 ;; Modeline
 (set-fontset-font "fontset-default"  '(#x2600 . #x26ff) "PxPlus IBM VGA8")
@@ -101,28 +150,6 @@
     `(font-lock-doc-face :foreground ,(doom-color 'base6))))
 
 ;; Modules
-;; (use-package! dimmer
-;;   :custom
-;;   (dimmer-fraction 0.8)
-;;   (dimmer-exclusion-predicates '(helm--alive-p window-minibuffer-p))
-;;   (dimmer-exclusion-regexp-list
-;;    '(".*Minibuf.*"
-;;      "^\\*[h|H]elm.*"
-;;      "^\\*Minibuf-[0-9]+\\*"
-;;      "^.\\*which-key\\*$"
-;;      " *company-box-"
-;;      ".*NeoTree.*"
-;;      ".*Treemacs.*"
-;;      "^.*Messages.*"
-;;      ".*Async.*"
-;;      ".*Warnings.*"
-;;      ".*transient.*"
-;;      ".*LV.*"
-;;      ".*Ilist.*")))
-
-;; (add-hook! 'after-init-hook #'global-hide-mode-line-mode)
-;; (add-hook! 'after-init-hook #'dimmer-mode)
-
 (after! treemacs
   (kaolin-treemacs-theme))
 
