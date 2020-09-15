@@ -1,24 +1,61 @@
 ;;; $DOOMDIR/+ui.el -*- lexical-binding: t; -*-
 
-(load-theme 'creamsody t)
 
-(setq evil-normal-state-cursor '(box "light blue")
-      evil-insert-state-cursor '(box "light pink")
-      evil-visual-state-cursor '(hollow "orange"))
+(defun casey-theme-setup ()
+  "My custom color scheme based on casey"
+  (interactive)
+  (load-theme 'doom-gruvbox t)
+  (setq evil-normal-state-cursor '(box "#40FF40")
+        evil-insert-state-cursor 'box
+        evil-visual-state-cursor '(hollow "#40FF40"))
+  (set-foreground-color "burlywood3")
+  (set-background-color "#161616")
+  (set-cursor-color "#40FF40")
+  (set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
+  (set-face-attribute 'font-lock-comment-face nil :foreground "gray50")
+  (set-face-attribute 'font-lock-constant-face nil :foreground "olive drab")
+  (set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
+  (set-face-attribute 'font-lock-function-name-face nil :foreground "burlywood3")
+  (set-face-attribute 'font-lock-keyword-face nil :foreground "DarkGoldenrod3")
+  (set-face-attribute 'font-lock-string-face nil :foreground "olive drab")
+  (set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
+  (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3"))
+
+(defun naysayer-theme-setup ()
+  "My custom color scheme based on johnathan blow"
+  (interactive)
+  (load-theme 'naysayer t)
+  (setq evil-normal-state-cursor '(box "lightgreen")
+        evil-insert-state-cursor '(box "lightgreen")
+        evil-visual-state-cursor '(hollow "lightgreen"))
+  (set-foreground-color "#b09876")
+  (set-background-color "#072626")
+  (set-cursor-color "lightgreen")
+  (set-face-attribute 'font-lock-builtin-face nil :foreground "#40db7e")
+  (set-face-attribute 'font-lock-comment-face nil :foreground "#3a8c5a")
+  (set-face-attribute 'font-lock-constant-face nil :foreground "#b09876")
+  (set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
+  (set-face-attribute 'font-lock-function-name-face nil :foreground "#dbdbdb")
+  (set-face-attribute 'font-lock-keyword-face nil :foreground "#dbdbdb")
+  (set-face-attribute 'font-lock-string-face nil :foreground "#0dbd94")
+  (set-face-attribute 'font-lock-type-face nil :foreground "#b09876")
+  (set-face-attribute 'font-lock-variable-name-face nil :foreground "#b09876"))
+
+(naysayer-theme-setup)
 
 (when (display-graphic-p)
   (setq user-font
         (cond
-         ((find-font (font-spec :name  "PxPlus IBM VGA8")) "PxPlus IBM VGA8")
+         ;; ((find-font (font-spec :name  "PxPlus IBM VGA8")) "PxPlus IBM VGA8")
          ;; ((find-font (font-spec :name  "Free Pixel")) "Free Pixel")
          ((find-font (font-spec :name  "JetBrains Mono")) "JetBrains Mono")
          ((find-font (font-spec :name  "OperatorMono Nerd Font")) "OperatorMono Nerd Font")
          ((find-font (font-spec :name  "Droid Sans Mono")) "Droid Sans Mono")
          ((find-font (font-spec :name  "Droid Sans Fallback")) "Droid Sans Fallback")))
   (cond (IS-MAC
-         (setq doom-font (font-spec :family user-font :size 16)
-               doom-big-font (font-spec :family user-font :size 16)
-               doom-variable-pitch-font (font-spec :family user-font :size 15)
+         (setq doom-font (font-spec :family user-font :size 12)
+               doom-big-font (font-spec :family user-font :size 12)
+               doom-variable-pitch-font (font-spec :family user-font :size 14)
                doom-modeline-height 20))
         (IS-LINUX
          (setq resolution-factor (eval (/ (x-display-pixel-height) 1080.0)))

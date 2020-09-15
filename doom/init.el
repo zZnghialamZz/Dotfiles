@@ -113,7 +113,7 @@
        ;;pass              ; password manager for nerds
        ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
-       ;;rgb               ; creating color strings
+       ;; rgb               ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
@@ -195,6 +195,13 @@
        :config
        ;;literate
        (default +bindings +snippets +smartparens))
+
+(defun update-load-path (&rest _)
+  "Update `load-path'."
+  (push "~/.config/doom/autoload" load-path))
+
+(add-to-list 'custom-theme-load-path (expand-file-name "themes/"))
+(update-load-path)
 
 (setq custom-file (expand-file-name "custom.el" doom-local-dir))
 (load custom-file 'no-error 'no-message)

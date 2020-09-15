@@ -50,6 +50,7 @@
 ;(unpin! t)
 
 ;; Disabled packages
+(disable-packages! rainbow-delimiters)
 (disable-packages! solaire-mode)
 (disable-packages! ccls) ;; Weird behaviour with Ethan
 
@@ -68,14 +69,12 @@
 
 ;; UI
 (package! kaolin-themes)
-(package! dimmer)
 (package! cyberpunk-theme)
 (package! tron-legacy-theme)
 (package! creamsody-theme)
 (package! darkburn-theme)
 (package! zenburn-theme)
 (package! naysayer-theme)
-(package! purp-theme)
 (package! color-theme-sanityinc-tomorrow)
 
 ;; Programming
