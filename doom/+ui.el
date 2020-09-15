@@ -1,6 +1,5 @@
 ;;; $DOOMDIR/+ui.el -*- lexical-binding: t; -*-
 
-
 (defun casey-theme-setup ()
   "My custom color scheme based on casey"
   (interactive)
@@ -26,11 +25,12 @@
   (interactive)
   (load-theme 'naysayer t)
   (setq evil-normal-state-cursor '(box "lightgreen")
-        evil-insert-state-cursor '(box "lightgreen")
+        evil-insert-state-cursor 'box
         evil-visual-state-cursor '(hollow "lightgreen"))
   (set-foreground-color "#b09876")
   (set-background-color "#072626")
   (set-cursor-color "lightgreen")
+  (set-face-attribute 'mode-line-inactive nil :background "#275252")
   (set-face-attribute 'font-lock-builtin-face nil :foreground "#40db7e")
   (set-face-attribute 'font-lock-comment-face nil :foreground "#3a8c5a")
   (set-face-attribute 'font-lock-constant-face nil :foreground "#b09876")
@@ -77,105 +77,115 @@
 
 (setq +workspaces-on-switch-project-behavior t)
 
-;; Echoline
-(require 'subr-x)
-
-(defun enhanced-message (orig-fun &rest args)
-  "This enhanced message displays a regular message in the echo area
-   and adds a specific text on the right part of the echo area. This
-   is to be used as an advice."
-  (let* ((right (propertize
-                 ;; Hack: The first space is a thin space, not a regular space
-                 (format-time-string "   %H:%M  ")
-                 'face '(:height 0.85
-                         :overline t
-                         :family user-font
-                         :inherit face-bold-p)))
-         ;; -10 is a crude approximation for compensating the size of displayed
-         ;; text because "Roboto Condensed" is not monospaced. We should rather
-         ;; compute the actual width in pixel of the displayed text and compute
-         ;; the proper amount of spaces needed in the left part. This is beyond
-         ;; my current elisp/emacs knowledge.
-         (width (- (frame-width) (length right) -0))
-         (msg (if (car args) (apply 'format-message args) ""))
-         ;; Hack: The space for the split is a thin space, not a regular space
-         ;; This way, we get rid of the added part if present (unless an actual
-         ;; message uses a thin space.
-         (msg (car (split-string msg " ")))
-         (msg (string-trim msg))
-         (left (truncate-string-to-width msg width nil nil "…"))
-         (full (format (format "%%-%ds %%s" width) left right)))
-    (if (active-minibuffer-window)
-        ;; Regular log and display when minibuffer is active
-        (apply orig-fun args)
-      (progn
-        ;; Log actual message without echo
-        (if message-log-max
-            (let ((inhibit-message t)) (apply orig-fun (list msg))))
-        ;; Display enhanced message without log
-        (let ((message-truncate-lines t) (message-log-max nil))
-          (apply orig-fun (list full)))
-        ;; Set current message explicitely
-        (setq current-message msg)))))
-
-(advice-add 'message :around #'enhanced-message)
-(add-hook 'post-command-hook (lambda () (let ((message-log-max nil))
-                                          (message (current-message)))))
-
 ;; Modeline
-(set-fontset-font "fontset-default"  '(#x2600 . #x26ff) "PxPlus IBM VGA8")
+;; (set-fontset-font "fontset-default"  '(#x2600 . #x26ff) "PxPlus IBM VGA8")
 
-(define-key mode-line-major-mode-keymap [header-line]
-  (lookup-key mode-line-major-mode-keymap [mode-line]))
+;; (define-key mode-line-major-mode-keymap [header-line]
+;;   (lookup-key mode-line-major-mode-keymap [mode-line]))
 
-(defun mode-line-render (left right)
-  (let* ((available-width (- (window-width) (length left) )))
-    (format (format "%%s %%%ds" available-width) left right)))
+;; (defun mode-line-render (left right)
+;;   (let* ((available-width (- (window-width) (length left) )))
+;;     (format (format "%%s %%%ds" available-width) left right)))
 
-(setq mode-line-format
-     '((:eval
-       (mode-line-render
-       (format-mode-line (list
-         (propertize " =" 'face `(:inherit mode-line-buffer-id)
-                         'help-echo "Mode(s) menu"
-                         'mouse-face 'mode-line-highlight
-                         'local-map   mode-line-major-mode-keymap)
-         " %b "
-         (if (and buffer-file-name (buffer-modified-p))
-             (propertize "(*)" 'face `(:inherit face-faded)))))
-       (format-mode-line
-        (propertize "" 'face `(:inherit face-popout)))))))
+;; (setq mode-line-format
+;;      '((:eval
+;;        (mode-line-render
+;;        (format-mode-line (list
+;;          (propertize " =" 'face `(:inherit mode-line-buffer-id)
+;;                          'help-echo "Mode(s) menu"
+;;                          'mouse-face 'mode-line-highlight
+;;                          'local-map   mode-line-major-mode-keymap)
+;;          " %b "
+;;          (if (and buffer-file-name (buffer-modified-p))
+;;              (propertize "(*)" 'face `(:inherit face-faded)))))
+;;        (format-mode-line
+;;         (propertize "" 'face `(:inherit face-popout)))))))
 
-;; When we set a face, we take care of removing any previous settings
-(defun set-face (face style)
-  "Reset a face and make it inherit style."
-  (set-face-attribute face nil
-                      :foreground 'unspecified :background 'unspecified
-                      :family     'unspecified :slant      'unspecified
-                      :weight     'unspecified :height     'unspecified
-                      :underline  'unspecified :overline   'unspecified
-                      :box        'unspecified :inherit    style))
+;; ;; When we set a face, we take care of removing any previous settings
+;; (defun set-face (face style)
+;;   "Reset a face and make it inherit style."
+;;   (set-face-attribute face nil
+;;                       :foreground 'unspecified :background 'unspecified
+;;                       :family     'unspecified :slant      'unspecified
+;;                       :weight     'unspecified :height     'unspecified
+;;                       :underline  'unspecified :overline   'unspecified
+;;                       :box        'unspecified :inherit    style))
 
-(defun set-modeline-faces ()
-  ;; Mode line at top
-  (set-face 'header-line 'face-bold-p)
-  (set-face-attribute 'header-line nil
-                      :underline (face-foreground 'default))
-  (set-face-attribute 'mode-line nil
-                      :height 10
-                      ;; :underline (face-foreground 'default)
-                      :overline nil
-                      :box nil
-                      :foreground (face-background 'default)
-                      :background (face-background 'default))
-  (set-face 'mode-line-inactive 'mode-line))
+;; (defun set-modeline-faces ()
+;;   ;; Mode line at top
+;;   (set-face 'header-line 'face-bold-p)
+;;   (set-face-attribute 'header-line nil
+;;                       :underline (face-foreground 'default))
+;;   (set-face-attribute 'mode-line nil
+;;                       :height 10
+;;                       ;; :underline (face-foreground 'default)
+;;                       :overline nil
+;;                       :box nil
+;;                       :foreground (face-background 'default)
+;;                       :background (face-background 'default))
+;;   (set-face 'mode-line-inactive 'mode-line))
 
-(add-hook! 'after-init-hook #'set-modeline-faces)
-(add-hook! 'doom-load-theme-hook #'set-modeline-faces)
+;; (add-hook! 'after-init-hook #'set-modeline-faces)
+;; (add-hook! 'doom-load-theme-hook #'set-modeline-faces)
 
-;; Comment if you want to keep the modeline at the bottom
-(setq-default header-line-format mode-line-format)
-(setq-default mode-line-format '(""))
+;; ;; Comment if you want to keep the modeline at the bottom
+;; (setq-default header-line-format mode-line-format)
+;; (setq-default mode-line-format '(""))
+
+;; Display time
+(display-time-mode t)
+
+;; Time format
+(customize-set-variable 'display-time-string-forms
+                        '((propertize (format-time-string " %H:%M " now) 'face 'bold)))
+
+;; Update display-time-string
+(display-time-update)
+;; Remove display-time-string from global-mode-string
+(setq global-mode-string (delq 'display-time-string global-mode-string))
+
+(display-battery-mode t)
+;; Remove battery-mode-line-string from global-mode-string
+(setq global-mode-string (delq 'battery-mode-line-string global-mode-string))
+
+(defun *-mode-line-fill (reserve)
+  "Return empty space using FACE and leaving RESERVE space on the right."
+  (unless reserve
+    (setq reserve 20))
+  (when (and window-system
+             (eq 'right (get-scroll-bar-mode)))
+    (setq reserve (- reserve 3)))
+  (propertize " "
+              'display `((space :align-to (- (+ right right-fringe right-margin) ,reserve)))))
+
+(customize-set-variable 'mode-line-format
+                        '("%e"
+                          mode-line-front-space
+                          mode-line-client
+                          mode-line-remote
+                          mode-line-mule-info
+                          mode-line-modified
+
+                          "  "
+                          ;; Buffer name
+                          mode-line-buffer-identification
+
+                          " "
+                          ;; Version control
+                          (:eval (when vc-mode
+                                   (concat " "
+                                           vc-mode)))
+                          ;; Miscellaneous information
+                          "  "
+                          mode-line-misc-info
+
+                          (:eval (*-mode-line-fill (+ (length battery-mode-line-string)
+                                                      1
+                                                      (length display-time-string))))
+                          battery-mode-line-string
+                          " "
+                          display-time-string
+                          ))
 
 ;; Disable line-numbers by default
 (setq display-line-numbers-type nil)
@@ -187,6 +197,9 @@
     `(font-lock-doc-face :foreground ,(doom-color 'base6))))
 
 ;; Modules
+(use-package! minions
+  :config (minions-mode 1))
+
 (after! treemacs
   (kaolin-treemacs-theme))
 
@@ -205,6 +218,9 @@
                 (size-h 9 -1 :right) " "
                 (mode 16 16 :left :elide) " "
                 filename-and-process))))
+
+(after! cc-mode
+  (remove-hook 'c-mode-common-hook #'rainbow-delimiters-mode))
 
 (after! centered-window
   (setq cwm-centered-window-width 160))

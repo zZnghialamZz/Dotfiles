@@ -50,7 +50,6 @@
 ;(unpin! t)
 
 ;; Disabled packages
-(disable-packages! rainbow-delimiters)
 (disable-packages! solaire-mode)
 (disable-packages! ccls) ;; Weird behaviour with Ethan
 
@@ -65,6 +64,7 @@
 (package! highlight-indent-guides)
 (package! dired-narrow)
 (package! imenu-list)
+(package! minions)
 (package! color-rg :recipe (:host github :repo "manateelazycat/color-rg"))
 
 ;; UI
