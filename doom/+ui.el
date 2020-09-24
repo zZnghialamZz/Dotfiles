@@ -1,11 +1,14 @@
 ;;; $DOOMDIR/+ui.el -*- lexical-binding: t; -*-
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; MINIMAL COLOR THEME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun casey-theme-setup ()
   "My custom color scheme based on casey"
   (interactive)
   (load-theme 'doom-gruvbox t)
   (setq evil-normal-state-cursor '(box "#40FF40")
-        evil-insert-state-cursor 'box
+        evil-insert-state-cursor '(box "#40FF40")
         evil-visual-state-cursor '(hollow "#40FF40"))
   (set-foreground-color "burlywood3")
   (set-background-color "#161616")
@@ -20,28 +23,69 @@
   (set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
   (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3"))
 
+(defun light-theme-setup ()
+  "My custom color scheme based on casey"
+  (interactive)
+  (load-theme 'doom-opera-light t)
+  (setq evil-normal-state-cursor '(box "black")
+        evil-insert-state-cursor '(box "black")
+        evil-visual-state-cursor '(hollow "black"))
+  (set-foreground-color "#333333")
+  (set-background-color "#f0f0f0")
+  (set-cursor-color "black")
+  (set-face-attribute 'font-lock-builtin-face nil :foreground "#9A0000")
+  (set-face-attribute 'font-lock-comment-face nil :foreground "#007E00")
+  (set-face-attribute 'font-lock-constant-face nil :foreground "#7c0000")
+  (set-face-attribute 'font-lock-doc-face nil :foreground "#007E00")
+  (set-face-attribute 'font-lock-function-name-face nil :foreground "#333333")
+  (set-face-attribute 'font-lock-keyword-face nil :foreground "#8B4303")
+  (set-face-attribute 'font-lock-string-face nil :foreground "#7C0000")
+  (set-face-attribute 'font-lock-type-face nil :foreground "#333333")
+  (set-face-attribute 'font-lock-variable-name-face nil :foreground "#333333"))
+
+(defun fluery-theme-setup ()
+  "My custom color scheme based on johnathan blow"
+  (interactive)
+  (load-theme 'doom-gruvbox t)
+  (setq evil-normal-state-cursor '(box "#00EE00")
+        evil-insert-state-cursor '(box "#00EE00")
+        evil-visual-state-cursor '(hollow "#00EE00"))
+  (set-foreground-color "#b99468")
+  (set-background-color "#222425")
+  (set-cursor-color "#00EE00")
+  ;; (set-face-attribute 'mode-line-inactive nil :background "#275252")
+  (set-face-attribute 'font-lock-builtin-face nil :foreground "#dc7575")
+  (set-face-attribute 'font-lock-comment-face nil :foreground "#9ba290")
+  (set-face-attribute 'font-lock-constant-face nil :foreground "#ffa900")
+  (set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
+  (set-face-attribute 'font-lock-function-name-face nil :foreground "#b99468")
+  (set-face-attribute 'font-lock-keyword-face nil :foreground "#f0c674")
+  (set-face-attribute 'font-lock-string-face nil :foreground "#ffa900")
+  (set-face-attribute 'font-lock-type-face nil :foreground "#b99468")
+  (set-face-attribute 'font-lock-variable-name-face nil :foreground "#b99468"))
+
 (defun naysayer-theme-setup ()
   "My custom color scheme based on johnathan blow"
   (interactive)
   (load-theme 'naysayer t)
   (setq evil-normal-state-cursor '(box "lightgreen")
-        evil-insert-state-cursor 'box
+        evil-insert-state-cursor '(box "lightgreen")
         evil-visual-state-cursor '(hollow "lightgreen"))
-  (set-foreground-color "#b09876")
+  (set-foreground-color "#d1b897")
   (set-background-color "#072626")
   (set-cursor-color "lightgreen")
   (set-face-attribute 'mode-line-inactive nil :background "#275252")
   (set-face-attribute 'font-lock-builtin-face nil :foreground "#40db7e")
   (set-face-attribute 'font-lock-comment-face nil :foreground "#3a8c5a")
-  (set-face-attribute 'font-lock-constant-face nil :foreground "#b09876")
+  (set-face-attribute 'font-lock-constant-face nil :foreground "#d1b897")
   (set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
   (set-face-attribute 'font-lock-function-name-face nil :foreground "#dbdbdb")
   (set-face-attribute 'font-lock-keyword-face nil :foreground "#dbdbdb")
   (set-face-attribute 'font-lock-string-face nil :foreground "#0dbd94")
-  (set-face-attribute 'font-lock-type-face nil :foreground "#b09876")
-  (set-face-attribute 'font-lock-variable-name-face nil :foreground "#b09876"))
+  (set-face-attribute 'font-lock-type-face nil :foreground "#d1b897")
+  (set-face-attribute 'font-lock-variable-name-face nil :foreground "#d1b897"))
 
-(naysayer-theme-setup)
+(casey-theme-setup)
 
 (when (display-graphic-p)
   (setq user-font
@@ -53,8 +97,8 @@
          ((find-font (font-spec :name  "Droid Sans Mono")) "Droid Sans Mono")
          ((find-font (font-spec :name  "Droid Sans Fallback")) "Droid Sans Fallback")))
   (cond (IS-MAC
-         (setq doom-font (font-spec :family user-font :size 12)
-               doom-big-font (font-spec :family user-font :size 12)
+         (setq doom-font (font-spec :family user-font :size 13)
+               doom-big-font (font-spec :family user-font :size 13)
                doom-variable-pitch-font (font-spec :family user-font :size 14)
                doom-modeline-height 20))
         (IS-LINUX
@@ -71,67 +115,9 @@
 (setq doom-themes-treemacs-enable-variable-pitch nil)
 (setq treemacs-space-between-root-nodes nil)
 
-;; (after! doom-modeline
-;;   (setq doom-modeline-buffer-file-name-style 'relative-from-project
-;;         doom-modeline-major-mode-icon t))
-
 (setq +workspaces-on-switch-project-behavior t)
 
 ;; Modeline
-;; (set-fontset-font "fontset-default"  '(#x2600 . #x26ff) "PxPlus IBM VGA8")
-
-;; (define-key mode-line-major-mode-keymap [header-line]
-;;   (lookup-key mode-line-major-mode-keymap [mode-line]))
-
-;; (defun mode-line-render (left right)
-;;   (let* ((available-width (- (window-width) (length left) )))
-;;     (format (format "%%s %%%ds" available-width) left right)))
-
-;; (setq mode-line-format
-;;      '((:eval
-;;        (mode-line-render
-;;        (format-mode-line (list
-;;          (propertize " =" 'face `(:inherit mode-line-buffer-id)
-;;                          'help-echo "Mode(s) menu"
-;;                          'mouse-face 'mode-line-highlight
-;;                          'local-map   mode-line-major-mode-keymap)
-;;          " %b "
-;;          (if (and buffer-file-name (buffer-modified-p))
-;;              (propertize "(*)" 'face `(:inherit face-faded)))))
-;;        (format-mode-line
-;;         (propertize "" 'face `(:inherit face-popout)))))))
-
-;; ;; When we set a face, we take care of removing any previous settings
-;; (defun set-face (face style)
-;;   "Reset a face and make it inherit style."
-;;   (set-face-attribute face nil
-;;                       :foreground 'unspecified :background 'unspecified
-;;                       :family     'unspecified :slant      'unspecified
-;;                       :weight     'unspecified :height     'unspecified
-;;                       :underline  'unspecified :overline   'unspecified
-;;                       :box        'unspecified :inherit    style))
-
-;; (defun set-modeline-faces ()
-;;   ;; Mode line at top
-;;   (set-face 'header-line 'face-bold-p)
-;;   (set-face-attribute 'header-line nil
-;;                       :underline (face-foreground 'default))
-;;   (set-face-attribute 'mode-line nil
-;;                       :height 10
-;;                       ;; :underline (face-foreground 'default)
-;;                       :overline nil
-;;                       :box nil
-;;                       :foreground (face-background 'default)
-;;                       :background (face-background 'default))
-;;   (set-face 'mode-line-inactive 'mode-line))
-
-;; (add-hook! 'after-init-hook #'set-modeline-faces)
-;; (add-hook! 'doom-load-theme-hook #'set-modeline-faces)
-
-;; ;; Comment if you want to keep the modeline at the bottom
-;; (setq-default header-line-format mode-line-format)
-;; (setq-default mode-line-format '(""))
-
 ;; Display time
 (display-time-mode t)
 
@@ -188,7 +174,20 @@
                           ))
 
 ;; Disable line-numbers by default
-(setq display-line-numbers-type nil)
+(setq display-line-numbers-type nil
+      ;; From Henrik:
+      ;;
+      ;; "By default it should keep scrolling until it detects the first error. It's controlled by the
+      ;;  compilation-scroll-output variable (set to 'first-error in doom, nil in vanilla. Set to t to
+      ;;  always scroll). Also, it stops auto-scrolling if you scroll it manually, i believe."
+      ;;
+      ;; https://discordapp.com/channels/406534637242810369/406554085794381833/654479202560770065
+      ;;
+      ;;NOTE: For some reason, 'first-error isn't working for me. Set to t.
+      compilation-scroll-output t)
+
+(set-popup-rule! "\*input/output of .*\*" :height 18 :quit 'other)
+(set-popup-rule! "compilation" :height 10)
 
 ;; For terminal
 (unless (display-graphic-p)

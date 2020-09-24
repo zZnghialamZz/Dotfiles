@@ -5,7 +5,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (after! company
-  (setq company-idle-delay 0.2))
+  (setq company-idle-delay 0.1))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -75,8 +75,7 @@
                  "[/\\\\]third_party$"
                  "[/\\\\]third-party$"
                  ))
-    (push dir lsp-file-watch-ignored))
-  )
+    (push dir lsp-file-watch-ignored)))
 
 
 (after! lsp-ui
