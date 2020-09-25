@@ -23,10 +23,30 @@
   (set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
   (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3"))
 
-(defun light-theme-setup ()
-  "My custom color scheme based on casey"
+(defun 4coder-theme-setup ()
+  "My custom color scheme based on 4coder"
   (interactive)
-  (load-theme 'doom-opera-light t)
+  (load-theme 'modus-vivendi t)
+  (setq evil-normal-state-cursor '(box "green")
+        evil-insert-state-cursor '(box "green")
+        evil-visual-state-cursor '(hollow "green"))
+  (set-foreground-color "#90B080")
+  (set-background-color "#0C0C0C")
+  (set-cursor-color "green")
+  (set-face-attribute 'font-lock-builtin-face nil :foreground "#D08F20")
+  (set-face-attribute 'font-lock-comment-face nil :foreground "#2090F0")
+  (set-face-attribute 'font-lock-constant-face nil :foreground "#50FF30")
+  (set-face-attribute 'font-lock-doc-face nil :foreground "#2090F0")
+  (set-face-attribute 'font-lock-function-name-face nil :foreground "#90B080")
+  (set-face-attribute 'font-lock-keyword-face nil :foreground "#D08F20")
+  (set-face-attribute 'font-lock-string-face nil :foreground "#50FF30")
+  (set-face-attribute 'font-lock-type-face nil :foreground "#90B080")
+  (set-face-attribute 'font-lock-variable-name-face nil :foreground "#90B080"))
+
+(defun light-theme-setup ()
+  "My custom light color scheme"
+  (interactive)
+  (load-theme 'modus-operandi t)
   (setq evil-normal-state-cursor '(box "black")
         evil-insert-state-cursor '(box "black")
         evil-visual-state-cursor '(hollow "black"))
@@ -44,7 +64,7 @@
   (set-face-attribute 'font-lock-variable-name-face nil :foreground "#333333"))
 
 (defun fluery-theme-setup ()
-  "My custom color scheme based on johnathan blow"
+  "My custom color scheme based on ryan fleury"
   (interactive)
   (load-theme 'doom-gruvbox t)
   (setq evil-normal-state-cursor '(box "#00EE00")
