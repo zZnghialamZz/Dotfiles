@@ -1,5 +1,11 @@
 ;;; $DOOMDIR/+ui.el -*- lexical-binding: t; -*-
 
+;; Disable Frame title format
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(setq ns-use-proxy-icon nil)
+(setq frame-title-format nil)
+(require 'cl-lib)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; MINIMAL COLOR THEME
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -22,6 +28,26 @@
   (set-face-attribute 'font-lock-string-face nil :foreground "olive drab")
   (set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
   (set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3"))
+
+(defun bumbread-theme-setup ()
+  "My custom color scheme based on 4coder"
+  (interactive)
+  (load-theme 'modus-vivendi t)
+  (setq evil-normal-state-cursor '(box "white")
+        evil-insert-state-cursor '(box "white")
+        evil-visual-state-cursor '(hollow "white"))
+  (set-foreground-color "#BCBCBC")
+  (set-background-color "#090D12")
+  (set-cursor-color "white")
+  (set-face-attribute 'font-lock-builtin-face nil :foreground "#EE00E8")
+  (set-face-attribute 'font-lock-comment-face nil :foreground "#555555")
+  (set-face-attribute 'font-lock-constant-face nil :foreground "white")
+  (set-face-attribute 'font-lock-doc-face nil :foreground "#555555")
+  (set-face-attribute 'font-lock-function-name-face nil :foreground "white")
+  (set-face-attribute 'font-lock-keyword-face nil :foreground "#FFFFFF")
+  (set-face-attribute 'font-lock-string-face nil :foreground "#A8A59E")
+  (set-face-attribute 'font-lock-type-face nil :foreground "#BCBCBC")
+  (set-face-attribute 'font-lock-variable-name-face nil :foreground "#BCBCBC"))
 
 (defun 4coder-theme-setup ()
   "My custom color scheme based on 4coder"
@@ -219,8 +245,10 @@
 (use-package! minions
   :config (minions-mode 1))
 
+;; (after! treemacs
+;;   (kaolin-treemacs-theme))
 (after! treemacs
-  (kaolin-treemacs-theme))
+  (setq treemacs-no-png-images t))
 
 (after! ibuffer
   ;; set ibuffer name column width

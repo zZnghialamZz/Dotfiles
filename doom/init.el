@@ -26,7 +26,6 @@
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        (ivy               ; a search engine for love and life
-        +icons
         +prescient)
         ;; +childframe)
 
@@ -73,11 +72,11 @@
 
        :emacs
        (dired            ; making dired pretty [functional]
-        +ranger          ; bringing the goodness of ranger to dired
-        +icons)          ; colorful icons for dired-mode
+        +ranger)          ; bringing the goodness of ranger to dired
+        ;; +icons)          ; colorful icons for dired-mode
        electric          ; smarter, keyword-based electric-indent
-       (ibuffer         ; interactive buffer management
-        +icons)
+       ibuffer         ; interactive buffer management
+        ;; +icons)
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
