@@ -1,5 +1,6 @@
 # Dotfiles
 
-My personal config files on my Mac.
+My personal config files.
 
 ![Screenshot](res/screenshot.png "My MacOS Configuration")
+

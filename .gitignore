@@ -1,5 +1,8 @@
 # Dont commit files
 .DS_Store
+__pycache__
+vifminfo
+vifminfo.json
 
 # Dont commit these auto generate folder
 coc/
