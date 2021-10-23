@@ -5,16 +5,23 @@ vifminfo
 vifminfo.json
 
 # Dont commit these auto generate folder
+.mono/
 coc/
 configstore/
 GameMakerStudio2/
 gatsby/
+gh/
 gops/
 gtk-2.0/
+htop/
+iterm2/
+localStoragePy/
 neofetch/
 NuGet/
+Microsoft\VisualStudio Services/
 rtags/
 stetic/
 qutebrowser/bookmarks/
+Unreal Engine/
 xbuild/
 

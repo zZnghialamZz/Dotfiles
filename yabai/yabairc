@@ -73,4 +73,4 @@ yabai -m signal --add event=space_changed action="osascript -e 'tell application
 yabai -m signal --add event=display_changed action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"macbar-spaces-jsx\"'"
 yabai -m signal --add event=space_changed action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"macbar-process-jsx\"'"
 
-echo "yabai configuration loaded.." 
+echo "yabai configuration loaded.."
