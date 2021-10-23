@@ -1,3 +1,7 @@
 [submodule "nvim"]
 	path = nvim
 	url = https://github.com/zZnghialamZz/nvim
+
+[submodule "simple-bar"]
+	path = Übersicht/widgets/simple-bar
+	url = https://github.com/Jean-Tinland/simple-bar
