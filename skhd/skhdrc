@@ -62,6 +62,9 @@ fn - x : yabai -m space --focus recent
 fn - z : yabai -m space --focus prev
 fn - c : yabai -m space --focus next
 
+cmd + alt - h : yabai -m space --focus prev
+cmd + alt - l : yabai -m space --focus next
+
 # send window to desktop and follow focus
 shift + cmd - x : yabai -m window --space last; yabai -m space --focus last
 shift + cmd - z : yabai -m window --space prev; yabai -m space --focus prev
@@ -105,7 +108,6 @@ shift + alt - w : yabai -m window --resize top:0:-20
 shift + alt - d : yabai -m window --resize right:20:0
 shift + alt - i : yabai -m window --resize top_left:-20:-20; \
                   yabai -m window --resize bottom_right:20:20
-
 
 # decrease window size
 shift + cmd - a : yabai -m window --resize left:20:0
