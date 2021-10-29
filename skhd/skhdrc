@@ -1,5 +1,6 @@
 # cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
-cmd - return : /usr/local/Cellar/emacs-plus@27/27.0.91/Emacs.app/Contents/MacOS/Emacs
+cmd - return : /Applications/kitty.app/Contents/MacOS/kitty
+# cmd - return : /usr/local/Cellar/emacs-plus@27/27.0.91/Emacs.app/Contents/MacOS/Emacs
 
 ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
@@ -10,8 +11,7 @@ alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
 
 # swap window
-shift + alt - h : yabai -m window --swap west
-shift + alt - j : yabai -m window --swap south
+shift + alt - h : yabai -m window --swap west shift + alt - j : yabai -m window --swap south
 shift + alt - k : yabai -m window --swap north
 shift + alt - l : yabai -m window --swap east
 
