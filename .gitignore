@@ -3,6 +3,8 @@
 __pycache__
 vifminfo
 vifminfo.json
+fish/fish_variables
+fishd.*
 
 # Dont commit these auto generate folder
 .mono/
@@ -24,4 +26,4 @@ stetic/
 qutebrowser/bookmarks/
 Unreal Engine/
 xbuild/
-
+fish/completions/
