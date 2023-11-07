@@ -1,0 +1,83 @@
+" Space as leader key
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
+set ignorecase
+set smartcase
+set visualbell
+set gdefault
+set incsearch
+set scrolloff=6
+set sidescrolloff=6
+set scrolljump=6
+set timeoutlen=5000
+set clipboard+=unnamed
+
+" Options
+set clipboard="unnamedplus"
+set fileencoding="utf-8"
+set hlsearch
+set ignorecase
+set smartcase
+set smartindent
+set splitbelow
+set splitright
+set noswapfile
+set undofile
+set undolevels=10000
+set undoreload=10000
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set cursorline
+set number
+set relativenumber
+set nolinebreak
+set scrolloff=8
+set sidescrolloff=8
+set showmode
+
+" Recommanded ideavim settings
+set ideajoin
+set ideaput
+set ideamarks
+
+" Window navigation keymaps
+nmap <Leader>wv :vsplit<CR>
+nmap <Leader>ws :split<CR>
+nmap <Leader>wh <C-w>h
+nmap <Leader>wj <C-w>j
+nmap <Leader>wk <C-w>k
+nmap <Leader>wl <C-w>l
+nmap <Leader>wq :q<CR>
+
+" Buffer keymaps
+nmap <Leader>bs :w<CR>
+nmap <Leader>bf <Action>(GotoFile)
+nmap <leader>bb <Action>(RecentFiles)
+
+" Tab navigation keymaps
+nmap <Leader>tp <Action>(PreviousTab)
+nmap <Leader>tn <Action>(NextTab)
+
+" Editor map
+imap jk <esc>
+
+nmap <leader>gc <Action>(GotoClass)
+nmap gi <Action>(GotoImplementation)
+nmap gd <Action>(GotoTypeDeclaration)
+nmap gtd <Action>(GotoDeclaration)
+nmap gsm <Action>(GotoSuperMethod)
+nmap gt <Action>(GotoTest)
+nmap gb <Action>(Back)
+nmap gf <Action>(Forward)
+
+map L $
+map H ^
+map <a-k> <Action>(MoveLineUp)
+map <a-j> <Action>(MoveLineDown)
+
+
+vnoremap < <gv
+vnoremap > >gv
