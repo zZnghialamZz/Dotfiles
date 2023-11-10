@@ -5,6 +5,7 @@ vifminfo
 vifminfo.json
 fish/fish_variables
 fishd.*
+config.el
 
 # Dont commit these auto generate folder
 .mono/

@@ -1,0 +1,244 @@
+#+TITLE:  Nghia Lam Emacs's Configuration.
+#+AUTHOR: Nghia Lam <nghialam12795@gmail.com>
+
+* Contents :TOC:
+- [[#about][About]]
+- [[#startup-settings][Startup settings]]
+- [[#custom-binding][Custom binding]]
+- [[#programming][Programming]]
+  - [[#autocomplete][Autocomplete]]
+  - [[#lsp][Lsp]]
+- [[#misc][Misc]]
+- [[#note-taking][Note taking]]
+  - [[#gtd][GTD]]
+  - [[#org][Org]]
+- [[#writing][Writing]]
+- [[#user-interface][User Interface]]
+  - [[#basic][Basic]]
+  - [[#font][Font]]
+  - [[#modeline][Modeline]]
+  - [[#treemacs][Treemacs]]
+  - [[#theme][Theme]]
+
+* About
+This is my WIP (yeah, it will always be a WIP :P) =simple= configuration of
+Emacs for my job and daily life tasks including: coding, note taking and
+writing.
+
+* Startup settings
+Load some  external path for emacs.
+
+#+begin_src emacs-lisp :tangle yes
+(add-to-list 'load-path "~/.config/doom/themes")
+
+(defvar myemacs/version
+  "1.0.0"
+  "Nghia Lam's Emacs version.")
+(defconst sys/win32
+  (eq system-type 'windows-nt)
+  "Are we using a Window OS?")
+(defconst sys/linux
+  (eq system-type 'gnu/linux)
+  "Are we using a GNU/Linux OS?")
+(defconst sys/macos
+  (eq system-type 'darwin)
+  "Are we using a Mac OS?")
+(defconst sys/mac-x-p
+  (and (display-graphic-p) sys/macos)
+  "Are we running under X on a Mac system?")
+(defconst sys/mac-cocoa-p
+  (featurep 'cocoa)
+  "Are we running with Cocoa on a Mac system?")
+(defconst sys/macport
+  (eq system-type 'mac)
+  "Are we using the Emacs macport?")
+(defconst emacs/>=26p
+  (>= emacs-major-version 26)
+  "Emacs is 26 or above.")
+;;(toggle-frame-maximized)
+#+end_src
+
+* Custom binding
+Some custom keystrokes that fit me well in my =Emacs= workflow.
+
+#+begin_src emacs-lisp :tangle yes
+;; Quick begin/end of line
+(map! :nv "H" #'evil-first-non-blank-of-visual-line)
+(map! :nv "L" #'evil-end-of-line-or-visual-line)
+#+end_src
+
+* Programming
+** Autocomplete
+I dont like the delay of our autocomplete, so I will make it appear right away
+when I type.
+
+#+begin_src emacs-lisp :tangle yes
+(after! company
+  (setq company-idle-delay 0.0))
+
+;; (after! ivy-posframe
+;;   (setq ivy-posframe-display-functions-alist
+;;       '((swiper          . ivy-posframe-display-at-frame-center)
+;;         (complete-symbol . ivy-posframe-display-at-point)
+;;         (counsel-M-x     . ivy-posframe-display-at-frame-center)
+;;         (t               . ivy-posframe-display))))
+#+end_src
+
+** Lsp
+Config for the lsp language servers
+
+#+begin_src emacs-lisp :tangle yes
+(setq lsp-ui-doc-enable t)
+(setq lsp-lens-enable nil)
+(setq lsp-ui-sideline-enable nil)
+#+end_src
+
+* Misc
+** COMMENT Helm
+As I am currently use =helm= as my main utilities packages, here is some hacking
+for it.
+
+#+begin_src emacs-lisp :tangle yes
+(after! helm
+  ;; (set-face-attribute 'helm-source-header nil
+  ;;                     :background "gray30"
+  ;;                     :height 140)
+  (defun my/helm-fonts ()
+    (face-remap-add-relative 'default :family "Hurmit Nerd Font Mono"))
+    ;;(face-remap-add-relative 'default :family "Fixedsys Excelsior 3.01"))
+
+  (add-hook 'helm-major-mode-hook #'my/helm-fonts))
+#+end_src
+
+* Note taking
+** GTD
+** Org
+*** Auto tangle
+`org-auto-tangle` allows us to add the option `#+auto_tangle: t` in the *Org* config file so that it automatically tangles when you save the document.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
+#+end_src
+
+* Writing
+* User Interface
+** Basic
+Hide the title bar
+
+#+begin_src emacs-lisp :tangle yes
+(add-to-list 'default-frame-alist '(undecorated . t))
+#+end_src
+
+Disable the annoying =solaire-mode=
+
+#+begin_src emacs-lisp :tangle yes
+(after! solaire-mode
+  (solaire-global-mode -1))
+#+end_src
+
+Disable the line number at startup
+
+#+begin_src emacs-lisp :tangle yes
+(setq display-line-numbers-type nil)
+#+end_src
+
+** Font
+Setting my favorite font here.
+
+#+begin_src emacs-lisp :tangle yes
+(when (display-graphic-p)
+  (setq user-font
+        (cond
+         ;;((find-font (font-spec :name "Hurmit NF")) "Hurmit NF")
+         ((find-font (font-spec :name "Hurmit Nerd Font Mono")) "Hurmit Nerd Font Mono")
+         ((find-font (font-spec :name "JetbrainsMono Nerd Font")) "JetbrainsMono Nerd Font")))
+
+  (cond (sys/macos
+         (setq doom-font (font-spec :family user-font :size 12)
+               doom-big-font (font-spec :family user-font :size 12)
+               doom-variable-pitch-font (font-spec :family user-font :size 12)))
+        (sys/win32
+         (setq doom-font (font-spec :family user-font :size 17)
+               doom-big-font (font-spec :family user-font :size 17)
+               doom-variable-pitch-font (font-spec :family user-font :size 17))))
+  (toggle-frame-maximized))
+#+end_src
+
+** Modeline
+I try to keep the modeline as minimal as possible.
+
+#+begin_src emacs-lisp :tangle yes
+;; Time format
+(defun simple-mode-line-render (left right)
+  "Return a string of `window-width' length.
+Containing LEFT, and RIGHT aligned respectively."
+  (let ((available-width
+         (- (window-total-width)
+            (+ (length (format-mode-line left))
+               (length (format-mode-line right))))))
+    (append left
+            (list (format (format "%%%ds" available-width) " "))
+            right)))
+
+(set-window-buffer nil (current-buffer))
+(setq-default mode-line-format
+      '((:eval
+         (format-mode-line
+          (simple-mode-line-render
+           ;; Left
+           '(" "
+             (:eval (propertize
+                     (if (and (not buffer-read-only) (buffer-modified-p))
+                         "? "
+                       "  " ) 'face 'font-lock-function-name-face))
+             mode-line-buffer-identification
+             ;; value of current line number
+             " %l:%c"
+             (:eval (propertize
+                     (concat " %p%%" " "
+                             ;; (if god-local-mode " ?? " " ? ")
+                             " ( %m ) ")))
+             mode-line-misc-info
+             )
+           ;; Right
+           '((:eval (propertize
+                     (format-time-string "%a, %b %d %I:%M%p ")))))))))
+#+end_src
+
+** Treemacs
+Remove the unstable icons support of treemacs.
+
+#+begin_src emacs-lisp :tangle yes
+(after! treemacs
+  ;; Ignore files
+  (treemacs-hide-gitignored-files-mode t)
+  (defun treemacs-custom-filter (file _)
+    (or (s-ends-with? ".aux" file)
+        (s-ends-with? ".meta" file)
+        (s-ends-with? ".log" file)))
+  (push #'treemacs-custom-filter treemacs-ignored-file-predicates)
+
+  ;; Misc
+  (setq treemacs-no-png-images t)
+  (setq treemacs-space-between-root-nodes nil)
+  (setq +workspaces-on-switch-project-behavior t))
+#+end_src
+
+** Theme
+Loading my favorite custom theme.
+
+#+begin_src emacs-lisp :tangle yes
+(defun theme-green-setup ()
+  "My custom color theme."
+  (interactive)
+  (load-theme 'painless-classic t)
+  (setq evil-normal-state-cursor '(box "green")
+        evil-insert-state-cursor '(box "red")
+        evil-visual-state-cursor '(hollow "green")))
+
+(theme-green-setup)
+#+end_src
