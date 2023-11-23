@@ -31,6 +31,9 @@ Load some  external path for emacs.
 #+begin_src emacs-lisp :tangle yes
 (add-to-list 'load-path "~/.config/doom/themes")
 
+(setq user-full-name "Nghia Lam"
+      user-mail-address "nghialam1279@gmail.com")
+
 (defvar myemacs/version
   "1.0.0"
   "Nghia Lam's Emacs version.")
@@ -55,7 +58,6 @@ Load some  external path for emacs.
 (defconst emacs/>=26p
   (>= emacs-major-version 26)
   "Emacs is 26 or above.")
-;;(toggle-frame-maximized)
 #+end_src
 
 * Custom binding
@@ -123,6 +125,15 @@ for it.
 #+end_src
 
 * Note taking
+Some setup for my note taking system.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package! deft
+  :config
+  (setq deft-directory "~/Dropbox/notes/")
+  (setq deft-default-extension "org"))
+#+end_src
+
 ** GTD
 ** Org
 *** Auto tangle
@@ -245,15 +256,23 @@ Loading my favorite custom theme.
 
 #+begin_src emacs-lisp :tangle yes
 (defun theme-green-setup ()
-  "My custom color theme."
+  "My custom green color theme."
   (interactive)
   (load-theme 'painless-classic t)
   (setq evil-normal-state-cursor '(box "green")
         evil-insert-state-cursor '(bar "red")
         evil-visual-state-cursor '(hollow "green")))
 
+(defun theme-naysayer-setup ()
+  "My custom naysayer color theme."
+  (interactive)
+  (load-theme 'naysayer t)
+  (setq evil-normal-state-cursor '(box "white")
+        evil-insert-state-cursor '(bar "green")
+        evil-visual-state-cursor '(hollow "white")))
+
 (defun theme-yellow-setup ()
-  "My custom color theme."
+  "My custom yellow color theme."
   (interactive)
   (load-theme 'doom-gruvbox-light t)
   (setq evil-normal-state-cursor '(box "black")
@@ -261,7 +280,7 @@ Loading my favorite custom theme.
         evil-visual-state-cursor '(hollow "black")))
 
 (defun theme-white-setup ()
-  "My custom color theme."
+  "My custom white color theme."
   (interactive)
   (load-theme 'doom-plain t)
   (setq evil-normal-state-cursor '(box "black")

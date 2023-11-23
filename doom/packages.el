@@ -49,4 +49,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+;; MISC
 (package! quickrun)
+
+;; UI/THEMEs
+(package! naysayer-theme)
