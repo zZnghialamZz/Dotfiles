@@ -174,20 +174,26 @@ Setting my favorite font here.
 
 #+begin_src emacs-lisp :tangle yes
 (when (display-graphic-p)
-  (setq user-font
-        (cond
-         ;;((find-font (font-spec :name "Hurmit NF")) "Hurmit NF")
-         ((find-font (font-spec :name "Hurmit Nerd Font Mono")) "Hurmit Nerd Font Mono")
-         ((find-font (font-spec :name "JetbrainsMono Nerd Font")) "JetbrainsMono Nerd Font")))
+  (cond (sys/macos
+         (setq user-font
+               (cond
+                ;;((find-font (font-spec :name "Hurmit NF")) "Hurmit NF")
+                ((find-font (font-spec :name "Hurmit Nerd Font Mono")) "Hurmit Nerd Font Mono")
+                ((find-font (font-spec :name "JetbrainsMono Nerd Font")) "JetbrainsMono Nerd Font"))))
+        (sys/win32
+         (setq user-font
+               (cond
+                ((find-font (font-spec :name "JetbrainsMono Nerd Font")) "JetbrainsMono Nerd Font")
+                ((find-font (font-spec :name "SauceCodePro Nerd Font")) "SauceCodePro Nerd Font")))))
 
   (cond (sys/macos
          (setq doom-font (font-spec :family user-font :size 13)
                doom-big-font (font-spec :family user-font :size 13)
                doom-variable-pitch-font (font-spec :family user-font :size 13)))
         (sys/win32
-         (setq doom-font (font-spec :family user-font :size 17)
-               doom-big-font (font-spec :family user-font :size 17)
-               doom-variable-pitch-font (font-spec :family user-font :size 17))))
+         (setq doom-font (font-spec :family user-font :size 14)
+               doom-big-font (font-spec :family user-font :size 14)
+               doom-variable-pitch-font (font-spec :family user-font :size 14))))
   (toggle-frame-maximized))
 #+end_src
 
