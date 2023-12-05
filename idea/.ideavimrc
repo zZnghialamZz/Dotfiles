@@ -61,13 +61,22 @@ nmap <leader>bb <Action>(RecentFiles)
 nmap <Leader>tp <Action>(PreviousTab)
 nmap <Leader>tn <Action>(NextTab)
 
+" project navigation keymaps
+nmap <Leader>po <Action>(SwitchHeaderSource)
+
+" Code features keymaps
+nmap <Leader>cr <Action>(RenameElement)
+nmap <Leader>cf <Action>(ReformatCode)
+nmap <Leader>cc <Action>(CommentByLineComment)
+
 " Editor map
 imap jk <esc>
 
 nmap <leader>gc <Action>(GotoClass)
 nmap gi <Action>(GotoImplementation)
-nmap gd <Action>(GotoTypeDeclaration)
-nmap gtd <Action>(GotoDeclaration)
+nmap gd <Action>(GotoDeclaration)
+nmap gu <Action>(FindUsages)
+nmap gtd <Action>(GotoTypeDeclaration)
 nmap gsm <Action>(GotoSuperMethod)
 nmap gt <Action>(GotoTest)
 nmap gb <Action>(Back)
@@ -75,9 +84,8 @@ nmap gf <Action>(Forward)
 
 map L $
 map H ^
-map <a-k> <Action>(MoveLineUp)
-map <a-j> <Action>(MoveLineDown)
-
+map <a-k> 15k
+map <a-j> 15j
 
 vnoremap < <gv
 vnoremap > >gv
