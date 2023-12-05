@@ -130,12 +130,28 @@ Some setup for my note taking system.
 #+begin_src emacs-lisp :tangle yes
 (use-package! deft
   :config
-  (setq deft-directory "~/Dropbox/notes/")
+
+  ;; (setq deft-directory "~/Dropbox/notes/")
+  (cond (sys/macos
+         (setq deft-directory "~/Dropbox/notes/"))
+        (sys/win32
+         (setq deft-directory "D:/dropbox/Dropbox/notes")))
   (setq deft-default-extension "org"))
 #+end_src
 
 ** GTD
 ** Org
+*** Basic settings
+Get some basic setting for our org system
+
+#+begin_src emacs-lisp :tangle yes
+(after! org
+  (cond (sys/macos
+         (setq org-directory "~/Dropbox/notes/"))
+        (sys/win32
+         (setq org-directory "D:/dropbox/Dropbox/notes"))))
+#+end_src
+
 *** Auto tangle
 `org-auto-tangle` allows us to add the option `#+auto_tangle: t` in the *Org* config file so that it automatically tangles when you save the document.
 
@@ -153,7 +169,8 @@ Some setup for my note taking system.
 Hide the title bar
 
 #+begin_src emacs-lisp :tangle yes
-(add-to-list 'default-frame-alist '(undecorated . t))
+(cond (sys/macos
+       (add-to-list 'default-frame-alist '(undecorated . t))))
 #+end_src
 
 Disable the annoying =solaire-mode=
