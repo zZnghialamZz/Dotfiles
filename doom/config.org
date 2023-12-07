@@ -67,6 +67,8 @@ Some custom keystrokes that fit me well in my =Emacs= workflow.
 ;; Quick begin/end of line
 (map! :nv "H" #'evil-first-non-blank-of-visual-line)
 (map! :nv "L" #'evil-end-of-line-or-visual-line)
+(map! :nv "C-j" #'(lambda () (interactive) (next-line)(next-line)(next-line)(next-line)(next-line)(next-line)(next-line)(next-line)(next-line)(next-line)))
+(map! :nv "C-k" #'(lambda () (interactive) (previous-line)(previous-line)(previous-line)(previous-line)(previous-line)(previous-line)(previous-line)(previous-line)(previous-line)(previous-line)))
 #+end_src
 
 * Programming
@@ -195,6 +197,7 @@ Setting my favorite font here.
          (setq user-font
                (cond
                 ;;((find-font (font-spec :name "Hurmit NF")) "Hurmit NF")
+                ((find-font (font-spec :name "Courier New")) "Courier New")
                 ((find-font (font-spec :name "Hurmit Nerd Font Mono")) "Hurmit Nerd Font Mono")
                 ((find-font (font-spec :name "JetbrainsMono Nerd Font")) "JetbrainsMono Nerd Font"))))
         (sys/win32
@@ -204,9 +207,9 @@ Setting my favorite font here.
                 ((find-font (font-spec :name "SauceCodePro Nerd Font")) "SauceCodePro Nerd Font")))))
 
   (cond (sys/macos
-         (setq doom-font (font-spec :family user-font :size 13)
-               doom-big-font (font-spec :family user-font :size 13)
-               doom-variable-pitch-font (font-spec :family user-font :size 13)))
+         (setq doom-font (font-spec :family user-font :size 14)
+               doom-big-font (font-spec :family user-font :size 14)
+               doom-variable-pitch-font (font-spec :family user-font :size 14)))
         (sys/win32
          (setq doom-font (font-spec :family user-font :size 14)
                doom-big-font (font-spec :family user-font :size 14)
