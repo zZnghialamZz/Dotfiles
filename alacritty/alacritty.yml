@@ -345,70 +345,35 @@ font:
   # regardless of their background color.
   #transparent_background_colors: false
 
-# Colors (Baitong)
+# Marine Dark Theme
+# Source: https://github.com/ProDeSquare/alacritty-colorschemes/blob/master/themes/marine_dark.yaml
 colors:
+  # Default colors
   primary:
-    background: '#000000'
-    foreground: '#33ff33'
-
-  cursor:
-    text: '#000000'
-    cursor: '#33ff33'
-
-  vi_mode_cursor:
-    text: '#000000'
-    cursor: '#ff00ff'
-
-  search:
-    matches:
-      foreground: '#000000'
-      background: '#1AE642'
-    focused_match:
-      foreground: '#000000'
-      background: '#ff00ff'
-
-  hints:
-    start:
-      foreground: '#1d1f21'
-      background: '#1AE642'
-
-    end:
-      foreground: '#1AE642'
-      background: '#1d1f21'
-
-  line_indicator:
-    foreground: '#33ff33'
-    background: '#1d1f21'
-
-  footer_bar:
-    background: '#731d8b'
-    foreground: '#ffffff'
-
-  selection:
-    text: '#000000'
-    background: '#1AE642'
+    background: '0x002221'
+    foreground: '0xe6f8f8'
 
   # Normal colors
   normal:
-    black:   '#000000'
-    red:     '#f77272'
-    green:   '#33ff33'
-    yellow:  '#1AE642'
-    blue:    '#68FDFE'
-    magenta: '#ff66ff'
-    cyan:    '#87CEFA'
-    white:   '#dbdbd9'
+    black:   '0x002221'
+    red:     '0xea3431'
+    green:   '0x00b6b6'
+    yellow:  '0xf8b017'
+    blue:    '0x4894fd'
+    magenta: '0xe01dca'
+    cyan:    '0x1ab2ad'
+    white:   '0x99dddb'
 
   # Bright colors
   bright:
-    black:   '#ffffff'
-    red:     '#f77272'
-    green:   '#33ff33'
-    yellow:  '#1AE642'
-    blue:    '#68FDFE'
-    magenta: '#ff66ff'
-    cyan:    '#68FDFE'
-    white:   '#dbdbd9'
+    black:   '0x006562'
+    red:     '0xea3431'
+    green:   '0x00b6b6'
+    yellow:  '0xf8b017'
+    blue:    '0x4894fd'
+    magenta: '0xe01dca'
+    cyan:    '0x1ab2ad'
+    white:   '0xe6f6f6'
 
 # Bell
 #
