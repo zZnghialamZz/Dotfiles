@@ -200,6 +200,7 @@ Setting my favorite font here.
         (sys/win32
          (setq user-font
                (cond
+                ((find-font (font-spec :name "Courier New")) "Courier New")
                 ((find-font (font-spec :name "JetbrainsMono Nerd Font")) "JetbrainsMono Nerd Font")
                 ((find-font (font-spec :name "SauceCodePro Nerd Font")) "SauceCodePro Nerd Font")))))
 
@@ -208,9 +209,9 @@ Setting my favorite font here.
                doom-big-font (font-spec :family user-font :size 13)
                doom-variable-pitch-font (font-spec :family user-font :size 13)))
         (sys/win32
-         (setq doom-font (font-spec :family user-font :size 14)
-               doom-big-font (font-spec :family user-font :size 14)
-               doom-variable-pitch-font (font-spec :family user-font :size 14))))
+         (setq doom-font (font-spec :family user-font :size 15)
+               doom-big-font (font-spec :family user-font :size 15)
+               doom-variable-pitch-font (font-spec :family user-font :size 15))))
   (toggle-frame-maximized))
 #+end_src
 
